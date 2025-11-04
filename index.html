@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torre de Hanoi</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Torre de Hanoi</h1>
+
+  <div class="configuracion">
+    <label for="entradaNumDiscos">Número de discos (mínimo 3):</label>
+    <input type="number" id="entradaNumDiscos" value="3" min="3" max="10">
+    <button id="botonIniciar">Iniciar Juego</button>
+  </div>
+
+  <div class="informacion">
+    <span id="contadorMovimientos">Movimientos: 0</span>
+    <button id="botonAutoSolucion">Solución automática</button>
+    <button id="botonReiniciar">Reiniciar</button>
+  </div>
+
+  <div class="torres">
+    <div class="torre" id="torreA">
+      <h2>A</h2>
+      <div class="poste" data-torre="A"></div>
+    </div>
+    <div class="torre" id="torreB">
+      <h2>B</h2>
+      <div class="poste" data-torre="B"></div>
+    </div>
+    <div class="torre" id="torreC">
+      <h2>C</h2>
+      <div class="poste" data-torre="C"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

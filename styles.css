@@ -1,0 +1,72 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 20px;
+  background-color: #f0f8ff;
+  color: #333;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+.configuracion, .informacion {
+  margin: 10px 0;
+}
+
+.informacion span {
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  margin-left: 5px;
+}
+
+.torres {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.torre {
+  width: 30%;
+  border: 2px solid #444;
+  padding: 10px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+}
+
+.poste {
+  height: 250px;
+  position: relative;
+  border: 1px dashed #aaa;
+  margin-top: 10px;
+  background: #e6f2ff;
+}
+
+.disco {
+  position: absolute;
+  height: 24px;
+  background-color: #4a90e2;
+  border: 2px solid #357ab8;
+  box-sizing: border-box;
+  color: white;
+  text-align: center;
+  line-height: 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.disco.arrastrando {
+  opacity: 0.6;
+}
+
+.poste.sobre {
+  border-color: #2c8;
+  background: #e0ffe6;
+}
+

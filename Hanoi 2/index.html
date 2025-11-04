@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torres de Hanói Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <i class="fas fa-chess-queen header-icon"></i>
+                <h1>Torres de Hanói Pro</h1>
+                <div class="header-stats">
+                    <span id="contador">Movimientos: 0</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Panel de Control -->
+        <div class="control-panel">
+            <div class="panel-section">
+                <h3><i class="fas fa-cog"></i> Configuración</h3>
+                <div class="control-group">
+                    <label for="numDiscos">
+                        <i class="fas fa-layer-group"></i> Discos:
+                    </label>
+                    <select id="numDiscos" class="modern-select">
+                        <option value="3">3 Discos</option>
+                        <option value="4">4 Discos</option>
+                        <option value="5">5 Discos</option>
+                        <option value="6">6 Discos</option>
+                        <option value="7">7 Discos</option>
+                        <option value="8">8 Discos</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="volumeControl">
+                        <i class="fas fa-volume-up"></i> Volumen:
+                    </label>
+                    <input type="range" id="volumeControl" min="0" max="100" value="50" class="volume-slider">
+                    <span id="volumeValue">50%</span>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3><i class="fas fa-gamepad"></i> Controles</h3>
+                <div class="button-group">
+                    <button id="btnIniciar" class="btn btn-primary">
+                        <i class="fas fa-play"></i> Iniciar
+                    </button>
+                    <button id="btnManual" class="btn btn-secondary">
+                        <i class="fas fa-hand-pointer"></i> Modo Manual
+                    </button>
+                    <button id="btnAuto" class="btn btn-success">
+                        <i class="fas fa-robot"></i> Auto Solución
+                    </button>
+                    <button id="btnReiniciar" class="btn btn-warning">
+                        <i class="fas fa-redo"></i> Reiniciar
+                    </button>
+                    <button id="btnCancelar" class="btn btn-danger">
+                        <i class="fas fa-stop"></i> Cancelar
+                    </button>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3><i class="fas fa-info-circle"></i> Información</h3>
+                <div id="instrucciones" class="instructions">
+                    Presiona "Iniciar" para comenzar el juego
+                </div>
+                <div class="game-info">
+                    <div class="info-item">
+                        <i class="fas fa-bullseye"></i>
+                        <span>Objetivo: Mover todos los discos a la torre derecha</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Regla: No poner disco grande sobre pequeño</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Área del Juego -->
+        <div class="game-area">
+            <div class="towers-container">
+                <div class="tower-wrapper">
+                    <div class="tower" id="torre1">
+                        <div class="tower-base"></div>
+                        <div class="tower-label">
+                            <i class="fas fa-mountain"></i> Torre A
+                        </div>
+                    </div>
+                </div>
+                <div class="tower-wrapper">
+                    <div class="tower" id="torre2">
+                        <div class="tower-base"></div>
+                        <div class="tower-label">
+                            <i class="fas fa-mountain"></i> Torre B
+                        </div>
+                    </div>
+                </div>
+                <div class="tower-wrapper">
+                    <div class="tower" id="torre3">
+                        <div class="tower-base"></div>
+                        <div class="tower-label">
+                            <i class="fas fa-mountain"></i> Torre C
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Efectos de partículas -->
+            <div class="particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <p>&copy; 2024 Torres de Hanói Pro - Juego de Estrategia Clásico</p>
+                <div class="social-links">
+                    <span>Solución óptima: <strong id="solucionOptima">7 movimientos</strong></span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Sistema de Sonido -->
+    <audio id="moveSound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="clickSound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-game-click-1114.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="winSound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="errorSound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-warning-alarm-buzzer-985.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="selectSound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="backgroundMusic" loop preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-game-show-suspense-waiting-667.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="startSound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-game-show-intro-331.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
